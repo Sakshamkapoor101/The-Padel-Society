@@ -1,0 +1,196 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ============================================================
+   THE PADEL SOCIETY — DESIGN TOKENS
+   Brand palette: Ivory · Ink · Terracotta
+   ============================================================ */
+
+:root {
+  /* --- Raw brand scales --------------------------------- */
+  --ivory: #f4f1ea; /* primary light surface */
+  --ivory-paper: #faf8f2; /* raised paper */
+  --ivory-sand: #ebe6d9; /* subtle fill */
+  --ivory-linen: #e2dccc; /* borders / hairlines */
+
+  --ink: #11100f; /* primary dark / text */
+  --ink-soft: #1a1917; /* raised dark surface */
+  --ink-muted: #2a2823; /* dark borders */
+
+  --terracotta-50: #fbf0ed;
+  --terracotta-100: #f5d9d1;
+  --terracotta-200: #eab3a6;
+  --terracotta-300: #de8d7b;
+  --terracotta-400: #d26f5a;
+  --terracotta-500: #c55a48; /* brand accent */
+  --terracotta-600: #ac4839;
+  --terracotta-700: #8a392e;
+  --terracotta-800: #682c24;
+  --terracotta-900: #48201a;
+
+  /* --- Semantic tokens (LIGHT — the house default) ------ */
+  --background: var(--ivory);
+  --foreground: var(--ink);
+
+  --card: var(--ivory-paper);
+  --card-foreground: var(--ink);
+
+  --popover: var(--ivory-paper);
+  --popover-foreground: var(--ink);
+
+  --primary: var(--terracotta-500);
+  --primary-foreground: var(--ivory);
+
+  --secondary: var(--ivory-sand);
+  --secondary-foreground: var(--ink);
+
+  --muted: var(--ivory-sand);
+  --muted-foreground: #6f695c;
+
+  --accent: var(--terracotta-50);
+  --accent-foreground: var(--terracotta-700);
+
+  --destructive: #b23a2e;
+  --destructive-foreground: var(--ivory);
+
+  --border: var(--ivory-linen);
+  --input: var(--ivory-linen);
+  --ring: var(--terracotta-500);
+
+  --radius: 0.75rem;
+
+  /* Charts / data */
+  --chart-1: var(--terracotta-500);
+  --chart-2: var(--ink);
+  --chart-3: var(--terracotta-300);
+  --chart-4: #7c7461;
+  --chart-5: var(--terracotta-700);
+}
+
+.dark {
+  /* Semantic tokens (DARK — the "ink" world) */
+  --background: var(--ink);
+  --foreground: var(--ivory);
+
+  --card: var(--ink-soft);
+  --card-foreground: var(--ivory);
+
+  --popover: var(--ink-soft);
+  --popover-foreground: var(--ivory);
+
+  --primary: var(--terracotta-400);
+  --primary-foreground: var(--ink);
+
+  --secondary: var(--ink-soft);
+  --secondary-foreground: var(--ivory);
+
+  --muted: var(--ink-muted);
+  --muted-foreground: #a49d8d;
+
+  --accent: #241a16;
+  --accent-foreground: var(--terracotta-200);
+
+  --destructive: #d5584a;
+  --destructive-foreground: var(--ink);
+
+  --border: var(--ink-muted);
+  --input: #322f29;
+  --ring: var(--terracotta-400);
+
+  --chart-1: var(--terracotta-400);
+  --chart-2: var(--ivory);
+  --chart-3: var(--terracotta-200);
+  --chart-4: #a49d8d;
+  --chart-5: var(--terracotta-300);
+}
+
+/* ============================================================
+   Map tokens into Tailwind's theme so utilities resolve
+   (bg-background, text-primary, border-border, font-serif …)
+   ============================================================ */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Brand-named colors (bg-ink, text-terracotta, bg-ivory …) */
+  --color-ivory: var(--ivory);
+  --color-ivory-paper: var(--ivory-paper);
+  --color-ivory-sand: var(--ivory-sand);
+  --color-ivory-linen: var(--ivory-linen);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-muted: var(--ink-muted);
+  --color-terracotta-50: var(--terracotta-50);
+  --color-terracotta-100: var(--terracotta-100);
+  --color-terracotta-200: var(--terracotta-200);
+  --color-terracotta-300: var(--terracotta-300);
+  --color-terracotta-400: var(--terracotta-400);
+  --color-terracotta-500: var(--terracotta-500);
+  --color-terracotta-600: var(--terracotta-600);
+  --color-terracotta-700: var(--terracotta-700);
+  --color-terracotta-800: var(--terracotta-800);
+  --color-terracotta-900: var(--terracotta-900);
+  --color-terracotta: var(--terracotta-500);
+
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  /* Type families */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-fraunces), ui-serif, Georgia, serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  /* Radius scale */
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-feature-settings: "ss01", "cv05";
+  }
+
+  /* Display serif refinements */
+  .font-serif {
+    font-feature-settings: "ss01";
+  }
+}
+
+/* Utility: brand eyebrow / letterspaced label */
+@utility eyebrow {
+  @apply font-sans text-xs font-medium uppercase tracking-[0.22em] text-muted-foreground;
+}
