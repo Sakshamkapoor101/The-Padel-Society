@@ -3,6 +3,8 @@ import { ArrowUpRight, Check, Trophy } from "lucide-react";
 
 import { Wordmark } from "@/components/brand/wordmark";
 import { Monogram } from "@/components/brand/monogram";
+import { LogoWordmark } from "@/components/brand/logo-wordmark";
+import { LogoMark } from "@/components/brand/logo-mark";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -17,7 +19,6 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import {
   Accordion,
@@ -210,25 +211,31 @@ export default function Home() {
           id="logo"
           index="01"
           eyebrow="Identity"
-          title="Logo & monogram"
-          description="The wordmark and the interlocking PS mark. Give the mark room to breathe and only place it on ivory, ink or terracotta."
+          title="Logo & wordmark"
+          description="The full Padel Society wordmark and the interlocking PS mark (from public/brand). Give each room to breathe and only place them on ivory, ink or terracotta."
         >
           <div className="grid gap-6 md:grid-cols-2">
             <Card className="justify-center">
-              <CardContent className="flex flex-col items-center gap-8 py-12">
-                <Wordmark stacked className="text-2xl" />
-                <Separator className="w-24" />
-                <Wordmark className="text-lg" />
+              <CardContent className="flex flex-col gap-4 py-10">
+                <div className="flex items-center justify-center rounded-lg border border-border bg-ivory px-8 py-10">
+                  <LogoWordmark className="h-8 w-auto text-ink sm:h-9" />
+                </div>
+                <div className="flex items-center justify-center rounded-lg bg-ink px-8 py-10">
+                  <LogoWordmark className="h-8 w-auto text-ivory sm:h-9" />
+                </div>
               </CardContent>
             </Card>
             <Card className="justify-center">
-              <CardContent className="grid grid-cols-3 place-items-center gap-6 py-12">
-                <Monogram shape="circle" tone="ink" size={92} />
-                <Monogram shape="circle" tone="terracotta" size={92} />
-                <Monogram shape="circle" tone="ivory" size={92} />
-                <Monogram shape="capsule" tone="ink" size={92} />
-                <Monogram shape="capsule" tone="terracotta" size={92} />
-                <Monogram shape="capsule" tone="ivory" size={92} />
+              <CardContent className="grid grid-cols-3 gap-4 py-10">
+                <div className="flex h-32 items-center justify-center rounded-lg border border-border bg-ivory">
+                  <LogoMark className="h-16 w-auto text-ink" />
+                </div>
+                <div className="flex h-32 items-center justify-center rounded-lg bg-ivory">
+                  <LogoMark className="h-16 w-auto text-terracotta" />
+                </div>
+                <div className="flex h-32 items-center justify-center rounded-lg bg-ink">
+                  <LogoMark className="h-16 w-auto text-ivory" />
+                </div>
               </CardContent>
             </Card>
           </div>
