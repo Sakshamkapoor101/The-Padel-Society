@@ -22,9 +22,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "The Padel Society — Design System",
+  title: "The Padel Society — A members' padel club",
   description:
-    "Brand foundations and component library for The Padel Society: colour, typography, logo and UI.",
+    "Your whole padel life, one membership. Book courts, track your games and join the community. Opening Melbourne, November 2026.",
 };
 
 export default function RootLayout({
