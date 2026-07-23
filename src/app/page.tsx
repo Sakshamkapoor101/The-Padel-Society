@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import Image from "next/image";
 import { CalendarCheck, LineChart, Users, CreditCard, Check } from "lucide-react";
 
 import { LogoMark } from "@/components/brand/logo-mark";
@@ -7,11 +8,10 @@ import { HeroVideo } from "@/components/landing/hero-video";
 import { StickyNav } from "@/components/landing/sticky-nav";
 import { Button } from "@/components/ui/button";
 
-const navLinks = [
-  { href: "#play", label: "Our Story" },
-  { href: "#membership", label: "Membership" },
-  { href: "#waitlist", label: "Book" },
-  { href: "#play", label: "Community" },
+const clubStats = [
+  { n: "6", l: "Indoor Courts" },
+  { n: "2,400m²", l: "Floor Plate" },
+  { n: "16hr", l: "Daily Hours" },
 ];
 
 const features = [
@@ -101,32 +101,8 @@ export default function Home() {
           }}
         />
 
-        {/* top nav */}
-        <nav className="relative z-[3] flex items-center justify-between gap-5 px-6 py-6 text-white sm:px-10">
-          <LogoMark className="h-10 w-auto text-white" aria-label="The Padel Society" />
-          <div className="hidden items-center gap-9 md:flex">
-            {navLinks.map((l, i) => (
-              <a
-                key={i}
-                href={l.href}
-                className="text-[15px] font-medium text-white/90 transition hover:text-white"
-              >
-                {l.label}
-              </a>
-            ))}
-          </div>
-          <Button
-            asChild
-            variant="outline"
-            size="pill"
-            className="border-white/55 bg-white/5 text-white backdrop-blur hover:bg-white/15 hover:text-white"
-          >
-            <a href="#waitlist">Become a Member</a>
-          </Button>
-        </nav>
-
         {/* hero center */}
-        <div className="relative z-[3] flex flex-1 flex-col items-center justify-center gap-9 px-6 pb-16 text-center">
+        <div className="relative z-[3] flex flex-1 flex-col items-center justify-center gap-9 px-6 pb-16 pt-24 text-center">
           <LogoWordmark
             className="w-[min(80vw,760px)] text-white drop-shadow-[0_8px_30px_rgba(0,0,0,0.35)]"
             aria-label="The Padel Society"
@@ -137,7 +113,7 @@ export default function Home() {
               size="pill"
               className="border border-white/60 bg-ink/30 text-white backdrop-blur hover:bg-white/20"
             >
-              <a href="#waitlist">Book a Court</a>
+              <a href="#waitlist">Join the Waitlist</a>
             </Button>
             <Button
               asChild
@@ -156,8 +132,65 @@ export default function Home() {
       </header>
 
       <main>
+        {/* ===== ABOUT THE CLUB ===== */}
+        <section id="club" className="scroll-mt-24 py-20 sm:py-28">
+          <div className="mx-auto w-full max-w-6xl px-6">
+            <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+              <div>
+                <span className="eyebrow text-primary">Introduction</span>
+                <h2 className="mt-3.5 max-w-[20ch] text-balance font-serif text-3xl font-semibold leading-[1.06] tracking-tight sm:text-4xl md:text-[42px]">
+                  The fastest-growing sport in the world, given the room it
+                  deserves.
+                </h2>
+                <div className="mt-6 flex max-w-[54ch] flex-col gap-4 leading-relaxed text-muted-foreground">
+                  <p>
+                    Six indoor courts, built to championship standard. A movement
+                    studio for pilates and strength. Recovery, in an infrared
+                    sauna and cold plunge. A café-bar that opens with the espresso
+                    machine and closes with the last negroni.
+                  </p>
+                  <p>
+                    The Padel Society is designed as a destination, not a
+                    drop-in — built for the rituals of European sporting culture
+                    and the hours that surround the match.
+                  </p>
+                </div>
+                <dl className="mt-10 grid grid-cols-3 gap-6 border-t border-border pt-8">
+                  {clubStats.map((s) => (
+                    <div key={s.l}>
+                      <dt className="font-serif text-3xl font-semibold text-primary sm:text-4xl">
+                        {s.n}
+                      </dt>
+                      <dd className="mt-1 text-sm text-muted-foreground">
+                        {s.l}
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
+              <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-border">
+                <Image
+                  src="/about-club.jpg"
+                  alt="Aerial view of The Padel Society courts"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover"
+                  priority
+                />
+                <div
+                  className="pointer-events-none absolute inset-0 mix-blend-multiply"
+                  style={{
+                    background:
+                      "linear-gradient(160deg, rgba(197,90,72,0.28) 0%, rgba(197,90,72,0) 45%, rgba(72,32,26,0.35) 100%)",
+                  }}
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* ===== FEATURES ===== */}
-        <section id="play" className="py-20 sm:py-24">
+        <section id="play" className="scroll-mt-24 py-20 sm:py-24">
           <div className="mx-auto w-full max-w-6xl px-6">
             <SectionHead label="Everything in one place" title="Your whole padel life, one membership.">
               Padel is the fastest-growing sport in the world because it&apos;s
@@ -328,7 +361,7 @@ export default function Home() {
       </main>
 
       {/* ===== FOOTER ===== */}
-      <footer className="bg-ink-soft text-ivory/85">
+      <footer id="location" className="scroll-mt-24 bg-ink-soft text-ivory/85">
         <div className="mx-auto w-full max-w-6xl px-6 py-16">
           <div className="flex flex-wrap items-start justify-between gap-10">
             <div className="max-w-[30ch]">
