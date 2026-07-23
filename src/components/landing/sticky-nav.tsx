@@ -14,18 +14,21 @@ const links = [
 ];
 
 /**
- * Pill navigation.
- * - At the top of the hero it shows the full bar: PS mark (ink) on the left,
- *   the links, and a terracotta "Become a Member" button.
- * - Once you scroll past the hero it collapses to a small pill that only holds
- *   the "The Padel Society" wordmark, which scrolls back to the top on click.
+ * White pill nav.
+ * - Hidden at the very top (the hero's own transparent menu bar shows there).
+ * - Reveals once you start scrolling: PS mark (ink), links, terracotta CTA.
+ * - Scrolling further over the hero collapses it to a small pill holding only
+ *   a large "The Padel Society" wordmark, which scrolls back to top on click.
  */
 export function StickyNav() {
+  const [show, setShow] = useState(false);
   const [compact, setCompact] = useState(false);
 
   useEffect(() => {
     const onScroll = () => {
-      setCompact(window.scrollY > window.innerHeight * 0.6);
+      const y = window.scrollY;
+      setShow(y > 90);
+      setCompact(y > window.innerHeight * 0.6);
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -33,11 +36,17 @@ export function StickyNav() {
   }, []);
 
   return (
-    <div className="fixed inset-x-0 top-0 z-40 px-4 py-4">
+    <div
+      className={`fixed inset-x-0 top-0 z-40 px-4 py-4 transition-all duration-300 ${
+        show
+          ? "translate-y-0 opacity-100"
+          : "pointer-events-none -translate-y-full opacity-0"
+      }`}
+    >
       <div
         className={`mx-auto flex items-center rounded-full border border-border bg-card/95 shadow-[0_16px_44px_-22px_rgba(17,16,15,0.55)] backdrop-blur transition-all duration-300 ${
           compact
-            ? "max-w-max justify-center gap-0 px-7 py-2.5"
+            ? "max-w-max justify-center px-9 py-3"
             : "max-w-5xl justify-between gap-5 py-2.5 pl-6 pr-2.5"
         }`}
       >
@@ -47,7 +56,7 @@ export function StickyNav() {
             aria-label="The Padel Society — back to top"
             className="flex items-center transition-opacity hover:opacity-70"
           >
-            <LogoWordmark className="h-[18px] w-auto text-ink dark:text-ivory" />
+            <LogoWordmark className="h-9 w-auto text-ink dark:text-ivory sm:h-10" />
           </a>
         ) : (
           <>

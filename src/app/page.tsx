@@ -8,6 +8,13 @@ import { HeroVideo } from "@/components/landing/hero-video";
 import { StickyNav } from "@/components/landing/sticky-nav";
 import { Button } from "@/components/ui/button";
 
+const navLinks = [
+  { href: "#club", label: "The Club" },
+  { href: "#membership", label: "Membership" },
+  { href: "#play", label: "Programs" },
+  { href: "#location", label: "Location" },
+];
+
 const clubStats = [
   { n: "6", l: "Indoor Courts" },
   { n: "2,400m²", l: "Floor Plate" },
@@ -101,8 +108,32 @@ export default function Home() {
           }}
         />
 
+        {/* top menu bar — transparent over the video, visible at the top */}
+        <nav className="relative z-[3] flex items-center justify-between gap-5 px-6 py-6 text-white sm:px-10">
+          <LogoMark className="h-10 w-auto text-white" aria-label="The Padel Society" />
+          <div className="hidden items-center gap-9 md:flex">
+            {navLinks.map((l) => (
+              <a
+                key={l.label}
+                href={l.href}
+                className="text-[15px] font-medium text-white/90 transition hover:text-white"
+              >
+                {l.label}
+              </a>
+            ))}
+          </div>
+          <Button
+            asChild
+            variant="outline"
+            size="pill"
+            className="border-white/55 bg-white/5 text-white backdrop-blur hover:bg-white/15 hover:text-white"
+          >
+            <a href="#waitlist">Become a Member</a>
+          </Button>
+        </nav>
+
         {/* hero center */}
-        <div className="relative z-[3] flex flex-1 flex-col items-center justify-center gap-9 px-6 pb-16 pt-24 text-center">
+        <div className="relative z-[3] flex flex-1 flex-col items-center justify-center gap-9 px-6 pb-16 text-center">
           <LogoWordmark
             className="w-[min(80vw,760px)] text-white drop-shadow-[0_8px_30px_rgba(0,0,0,0.35)]"
             aria-label="The Padel Society"
@@ -176,13 +207,6 @@ export default function Home() {
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover"
                   priority
-                />
-                <div
-                  className="pointer-events-none absolute inset-0 mix-blend-multiply"
-                  style={{
-                    background:
-                      "linear-gradient(160deg, rgba(197,90,72,0.28) 0%, rgba(197,90,72,0) 45%, rgba(72,32,26,0.35) 100%)",
-                  }}
                 />
               </div>
             </div>
