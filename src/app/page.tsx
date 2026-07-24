@@ -6,6 +6,7 @@ import { LogoMark } from "@/components/brand/logo-mark";
 import { LogoWordmark } from "@/components/brand/logo-wordmark";
 import { HeroVideo } from "@/components/landing/hero-video";
 import { StickyNav } from "@/components/landing/sticky-nav";
+import { WaitlistPanel } from "@/components/landing/waitlist-panel";
 import { Button } from "@/components/ui/button";
 
 const navLinks = [
@@ -116,7 +117,7 @@ export default function Home() {
               <a
                 key={l.label}
                 href={l.href}
-                className="text-[15px] font-medium text-white/90 transition hover:text-white"
+                className="nav-link text-[15px] font-medium text-white/90 transition-opacity hover:text-white"
               >
                 {l.label}
               </a>
@@ -243,7 +244,7 @@ export default function Home() {
         </section>
 
         {/* ===== WAITLIST ===== */}
-        <section id="waitlist" className="bg-ink text-ivory">
+        <section id="waitlist" className="bg-black text-ivory">
           <div className="mx-auto w-full max-w-6xl px-6 py-20 sm:py-24">
             <div className="grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr]">
               <div>
@@ -272,52 +273,12 @@ export default function Home() {
                   ))}
                 </ul>
                 <Button asChild size="pill">
-                  <a href="#">Join the waitlist →</a>
+                  <a href="#waitlist">Join the waitlist →</a>
                 </Button>
               </div>
 
-              {/* leaderboard */}
-              <div className="rounded-[18px] border border-ink-muted bg-ink-soft p-2.5 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.6)]">
-                <div className="flex items-center justify-between px-4 pb-3 pt-3.5">
-                  <span className="text-xs font-semibold uppercase tracking-[0.16em] text-ivory/50">
-                    Live leaderboard
-                  </span>
-                  <span className="flex items-center gap-2 text-xs text-terracotta-300">
-                    <span className="size-1.5 animate-pulse rounded-full bg-terracotta-300" />
-                    2,140 in line
-                  </span>
-                </div>
-                {(
-                  [
-                    { r: 1, who: "Mara V.", inv: "18 invites", pts: "1,820", tone: "top" },
-                    { r: 2, who: "Jonas K.", inv: "15 invites", pts: "1,510", tone: "free" },
-                    { r: 3, who: "Priya S.", inv: "14 invites", pts: "1,395", tone: "free" },
-                  ] as const
-                ).map((row) => (
-                  <LeaderRow key={row.r} {...row} />
-                ))}
-                <div className="flex items-center gap-3 px-4 py-2">
-                  <span className="whitespace-nowrap text-[11px] uppercase tracking-[0.14em] text-terracotta-300">
-                    Free membership · top 50
-                  </span>
-                  <span className="h-px flex-1 bg-terracotta-300/30" />
-                </div>
-                {(
-                  [
-                    { r: 48, who: "Tom B.", inv: "4 invites", pts: "420", tone: "free" },
-                    { r: 49, who: "Lena R.", inv: "4 invites", pts: "410", tone: "free" },
-                  ] as const
-                ).map((row) => (
-                  <LeaderRow key={row.r} {...row} />
-                ))}
-                <LeaderRow
-                  r={73}
-                  who="You"
-                  inv="invite 2 more to break the top 50"
-                  pts="180"
-                  tone="you"
-                />
-              </div>
+              {/* signup form — reveals the live leaderboard once joined */}
+              <WaitlistPanel />
             </div>
           </div>
         </section>
@@ -385,7 +346,7 @@ export default function Home() {
       </main>
 
       {/* ===== FOOTER ===== */}
-      <footer id="location" className="scroll-mt-24 bg-ink-soft text-ivory/85">
+      <footer id="location" className="scroll-mt-24 bg-black text-ivory/85">
         <div className="mx-auto w-full max-w-6xl px-6 py-16">
           <div className="flex flex-wrap items-start justify-between gap-10">
             <div className="max-w-[30ch]">
@@ -426,41 +387,6 @@ export default function Home() {
           </div>
         </div>
       </footer>
-    </div>
-  );
-}
-
-function LeaderRow({
-  r,
-  who,
-  inv,
-  pts,
-  tone,
-}: {
-  r: number;
-  who: string;
-  inv: string;
-  pts: string;
-  tone: "top" | "free" | "you";
-}) {
-  const bg =
-    tone === "you"
-      ? "bg-terracotta-300/20 border border-dashed border-terracotta-300/55"
-      : tone === "free"
-        ? "bg-terracotta-500/[0.14]"
-        : "";
-  return (
-    <div className={`flex items-center gap-3.5 rounded-xl px-4 py-2.5 text-[15px] text-ivory/90 ${bg}`}>
-      <span className="w-[30px] font-serif text-base tabular-nums text-ivory/50">
-        {r}
-      </span>
-      <span className="flex-1">
-        {who}
-        <small className="block text-xs text-ivory/45">{inv}</small>
-      </span>
-      <span className="text-sm font-semibold tabular-nums text-terracotta-300">
-        {pts}
-      </span>
     </div>
   );
 }
