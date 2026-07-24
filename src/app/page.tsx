@@ -7,6 +7,7 @@ import { LogoWordmark } from "@/components/brand/logo-wordmark";
 import { HeroVideo } from "@/components/landing/hero-video";
 import { StickyNav } from "@/components/landing/sticky-nav";
 import { WaitlistPanel } from "@/components/landing/waitlist-panel";
+import { LocationSection } from "@/components/landing/location-section";
 import { Button } from "@/components/ui/button";
 
 const navLinks = [
@@ -343,10 +344,12 @@ export default function Home() {
             </div>
           </div>
         </section>
+        {/* ===== LOCATION ===== */}
+        <LocationSection />
       </main>
 
       {/* ===== FOOTER ===== */}
-      <footer id="location" className="scroll-mt-24 bg-black text-ivory/85">
+      <footer className="bg-black text-ivory/85">
         <div className="mx-auto w-full max-w-6xl px-6 py-16">
           <div className="flex flex-wrap items-start justify-between gap-10">
             <div className="max-w-[30ch]">
